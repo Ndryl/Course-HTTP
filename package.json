@@ -1,0 +1,26 @@
+{
+    "name": "httpcourse",
+    "version": "1.0.0",
+    "description": "Project for the leraning about HTTP",
+    "main": "main.js",
+    "scripts": {
+        "start": "node main.js",
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Ndryl/Course-HTTP.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Ndryl/Course-HTTP/issues"
+    },
+    "homepage": "https://github.com/Ndryl/Course-HTTP#readme",
+    "devDependencies": {
+        "jest": "^29.7.0"
+    },
+    "dependencies": {
+        "jsdom": "^26.0.0"
+    }
+}
