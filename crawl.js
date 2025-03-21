@@ -1,4 +1,36 @@
 const {JSDOM} = require('jsdom');
+
+
+async function crawlPage(currentURL) {
+    if (!currentURL) {
+        console.error(`Invalid URL provided: ${currentURL}`);
+        return;
+    }
+
+    console.log(`Actively crawling: ${currentURL}`);
+
+    try {
+        const resp = await fetch(currentURL);
+
+        if (!resp.ok) {
+            console.error(`Error crawling ${currentURL}: HTTP status ${resp.status}`);
+            return;
+        }
+
+        const contentType = resp.headers.get('content-type');
+        if (!contentType || !contentType.includes('text/html')) {
+            console.error(`Error crawling ${currentURL}: Unsupported content type ${contentType}`);
+            return;
+        }
+
+        const htmlBody = await resp.text();
+        console.log(htmlBody);
+    } catch (error) {
+        console.error(`Error crawling ${currentURL}: ${error.message}`);
+    }
+}
+
+
 function getURLsFromHTML(htmlBody, baseURL) {
     const urls = [];
     const dom = new JSDOM(htmlBody);
@@ -32,4 +64,4 @@ function normalizeURL(urlString) {
 }
 
 
-module.exports = {normalizeURL, getURLsFromHTML};
+module.exports = {normalizeURL, getURLsFromHTML, crawlPage};
